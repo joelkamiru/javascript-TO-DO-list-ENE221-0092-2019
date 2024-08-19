@@ -1,0 +1,27 @@
+let submit = document.getElementById("submit");
+let newTask = document.getElementById("task");
+
+submit.disabled = true;
+
+newTask.addEventListener("input", function() {
+    submit.disabled = (newTask.value.trim() === "");
+});
+
+document.querySelector("form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    let task = newTask.value.trim();
+
+    if (task !== "") {
+        let li = document.createElement("li");
+        li.textContent = task;
+
+        document.getElementById("tasks").appendChild(li);
+
+        
+        newTask.value = "";
+        submit.disabled = true;
+    }
+
+    return false;
+});
